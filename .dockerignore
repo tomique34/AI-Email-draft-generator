@@ -1,0 +1,36 @@
+# Ignore everything
+*
+
+# Allow only specific files
+!streamlit_sambanova_emaildraft.py
+!requirements.txt
+
+# Version control
+.git
+.gitignore
+
+# Environment files
+.env
+.env.*
+env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# OS specific files
+.DS_Store
+Thumbs.db

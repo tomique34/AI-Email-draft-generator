@@ -1,0 +1,22 @@
+services:
+  email-draft-generator:
+    build: .
+    container_name: email-draft-generator
+    restart: unless-stopped
+    environment:
+      - SAMBANOVA_API_KEY=${SAMBANOVA_API_KEY}
+    networks:
+      - traefik-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.email-draft.rule=Host(`apps.aithusiast.pro`) && PathPrefix(`/email-draft-generator`)"
+      - "traefik.http.routers.email-draft.entrypoints=websecure"
+      - "traefik.http.routers.email-draft.tls=true"
+      - "traefik.http.middlewares.email-draft-strip.stripprefix.prefixes=/email-draft-generator"
+      - "traefik.http.routers.email-draft.middlewares=email-draft-strip"
+      - "traefik.http.services.email-draft.loadbalancer.server.port=8501"
+      - "traefik.docker.network=traefik-net"
+
+networks:
+  traefik-net:
+    external: true
